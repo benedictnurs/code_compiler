@@ -4,10 +4,12 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 import os
 
+api_key = os.getenv('API_KEY')
+
 def create_submission(code, language_id):
     url = "https://judge0-ce.p.rapidapi.com/submissions"
     headers = {
-        "X-RapidAPI-Key": os.environ.get('API_KEY'),
+        "X-RapidAPI-Key": api_key,
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
         "Content-Type": "application/json",
     }
@@ -22,7 +24,7 @@ def create_submission(code, language_id):
 def get_submission_result(token):
     url = f"https://judge0-ce.p.rapidapi.com/submissions/{token}"
     headers = {
-        "X-RapidAPI-Key": os.environ.get('API_KEY'),
+        "X-RapidAPI-Key": api_key,
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
     }
     response = requests.get(url, headers=headers)
