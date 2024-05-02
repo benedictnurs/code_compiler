@@ -2,12 +2,14 @@ from flask import Flask
 import requests
 from flask import Flask, jsonify, request
 app = Flask(__name__)
+import os
 
+api_key = os.getenv('API_KEY')
 
 def create_submission(code, language_id):
     url = "https://judge0-ce.p.rapidapi.com/submissions"
     headers = {
-        "X-RapidAPI-Key": "c33a44b0e1msh857398697d76dcdp12ce4cjsnf8608946a30a",
+        "X-RapidAPI-Key": api_key,
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
         "Content-Type": "application/json",
     }
@@ -22,7 +24,7 @@ def create_submission(code, language_id):
 def get_submission_result(token):
     url = f"https://judge0-ce.p.rapidapi.com/submissions/{token}"
     headers = {
-        "X-RapidAPI-Key": "c33a44b0e1msh857398697d76dcdp12ce4cjsnf8608946a30a",
+        "X-RapidAPI-Key": api_key,
         "X-RapidAPI-Host": "judge0-ce.p.rapidapi.com",
     }
     response = requests.get(url, headers=headers)
@@ -48,9 +50,9 @@ def run_code():
         # Check if the submission is finished
         while submission_result["status"]["description"] != "Accepted":
             submission_result = get_submission_result(token)
-        return jsonify(submission_result)
+        return jsonify(api_key)
     else:
-        return jsonify({"error": "Submission failed"}), 400
+        return jsonify({"error": api_key}), 400
 
 if __name__ == "__main__":
     app.run(debug=True)
