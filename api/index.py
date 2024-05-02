@@ -52,7 +52,7 @@ def run_code():
             submission_result = get_submission_result(token)
         return jsonify(api_key)
     else:
-        return jsonify({"error": "Submission failed"}), 400
+        return jsonify({"error": api_key}), 400
 
 if __name__ == "__main__":
     app.run(debug=True)
