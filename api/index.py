@@ -50,7 +50,7 @@ def run_code():
         # Check if the submission is finished
         while submission_result["status"]["description"] != "Accepted":
             submission_result = get_submission_result(token)
-        return jsonify(submission_result)
+        return jsonify(api_key)
     else:
         return jsonify({"error": "Submission failed"}), 400
 
