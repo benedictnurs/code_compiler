@@ -4,7 +4,6 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 import os
 
-
 def create_submission(code, language_id):
     url = "https://judge0-ce.p.rapidapi.com/submissions"
     headers = {
