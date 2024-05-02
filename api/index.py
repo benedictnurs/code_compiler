@@ -31,10 +31,28 @@ def get_submission_result(token):
     print("Get Submission Result Response:", response.json())  # Added logging
     return response.json()
 
-@app.route("/api")
+@app.route("/api", methods=['POST'])
 def run_code():
-    return "<h1>Hello</h1>"
+    data = request.json
+    print("Received Request Data:", data)  # Added logging
+    code = data.get("code")
+    language_id = data.get("language_id")
+    print("code")
 
+    if not code or not language_id:
+        return jsonify({"error": "Missing code or language_id parameter"}), 400
+
+    submission_response = create_submission(code, language_id)
+    token = submission_response.get('token')
+
+    if token:
+        submission_result = get_submission_result(token)
+        # Check if the submission is finished
+        while submission_result["status"]["description"] != "Accepted":
+            submission_result = get_submission_result(token)
+        return jsonify(api_key)
+    else:
+        return jsonify({"error": api_key}), 400
 
 if __name__ == "__main__":
     app.run(debug=True)
