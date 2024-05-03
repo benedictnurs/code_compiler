@@ -16,7 +16,7 @@ export const DropDown = ({ handleButtonClick, file }) => {
       <motion.div animate={open ? "open" : "closed"} className="relative">
         <Button
           onClick={() => setOpen((pv) => !pv)}
-          className="gap-2 flex h-full px-8 py-3 rounded-md text-indigo-50 bg-gradient-to-r from-indigo-600 to-violet-600 hover:bg-indigo-500 transition-colors "
+          className="gap-2 flex h-full px-8 py-3 rounded-md text-indigo-50 bg-[#264F78] transition-colors "
         >
           <span className="font-medium text-sm">{getFileExtension(file.name)}</span> {/* Display file extension in uppercase */}
           <motion.span variants={iconVariants}>
@@ -28,7 +28,7 @@ export const DropDown = ({ handleButtonClick, file }) => {
           initial={wrapperVariants.closed}
           variants={wrapperVariants}
           style={{ originY: "top", translateX: "-50%" }}
-          className="flex flex-col gap-2 p-2 rounded-lg bg-white shadow-xl absolute top-[120%] left-[60%] overflow-hidden"
+          className="flex flex-col gap-2 p-2 rounded-lg bg-[#2A2D2E] shadow-xl absolute top-[120%] left-[50%] overflow-hidden"
         >
           {Object.keys(files).map((fileName) => (
             <Button
@@ -38,7 +38,7 @@ export const DropDown = ({ handleButtonClick, file }) => {
               className={
                 fileName === file.name
                   ? "bg-indigo-500 text-white"
-                  : ""
+                  : "bg-[#1E1E1E] text-[#D4D4D4] rounded font-mono py-1"
               }
               onClick={() => {
                 handleButtonClick(fileName);
