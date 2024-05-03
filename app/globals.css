@@ -16,8 +16,8 @@
   }
 }
 
-body {
-  background-color: #252526;
+html {
+  background-color: #252526 !important;
 }
 
 @layer utilities {

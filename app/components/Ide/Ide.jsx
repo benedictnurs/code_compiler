@@ -54,7 +54,7 @@ export const Ide = () => {
 
   return (
     <div>
-      <h1 className="text-4xl font-mono mb-6 text-[#6A9955]">#Compile your code!</h1>
+      <h1 className="text-4xl font-mono mb-4 text-[#6A9955]">#Compile your code!</h1>
       <div className="flex space-x-3 mb-5">
         <DropDown handleButtonClick={setFileName} file={file} />
         <Button
@@ -65,7 +65,7 @@ export const Ide = () => {
           {isLoading ? "Running Code..." : "Run Code"}
         </Button>
       </div>
-      <div className="flex">
+      <div className="flex flex-col sm:flex-row">
         <Editor
           height="70vh"
           theme="vs-dark"
@@ -74,7 +74,7 @@ export const Ide = () => {
           defaultValue={file.value}
           onMount={(editor) => (editorRef.current = editor)}
         />
-        <div className="w-full h-70vh bg-[#2A2D2E] text-white font-mono">
+        <div className="w-full h-70vh bg-[#2A2D2E] text-white font-mono sm:pb-0 pb-[400px]">
           <p className="ml-7 pt-2">Output:</p>
           <p className="ml-7">{output}</p>
         </div>
